@@ -1,0 +1,1 @@
+﻿dotnet ef dbcontext scaffold "server=localhost;database=northwind;user=root;password=root_oshigo;" MySql.EntityFrameworkCore --namespace Northwind.EntityModels --data-annotations

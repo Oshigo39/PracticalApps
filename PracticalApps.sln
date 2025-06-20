@@ -1,8 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.EntityModels.Mysql", "Northwind.EntityModels.Mysql\Northwind.EntityModels.Mysql.csproj", "{8D35B965-A787-4F51-B2CD-21752C9A98B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.DataContext.MySql", "Northwind.DataContext.MySql\Northwind.DataContext.MySql.csproj", "{DDD1935B-169F-4847-A114-EE9FB303EBCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D35B965-A787-4F51-B2CD-21752C9A98B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D35B965-A787-4F51-B2CD-21752C9A98B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D35B965-A787-4F51-B2CD-21752C9A98B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D35B965-A787-4F51-B2CD-21752C9A98B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDD1935B-169F-4847-A114-EE9FB303EBCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDD1935B-169F-4847-A114-EE9FB303EBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDD1935B-169F-4847-A114-EE9FB303EBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDD1935B-169F-4847-A114-EE9FB303EBCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
