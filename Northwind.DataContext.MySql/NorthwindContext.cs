@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Northwind.EntityModels;
 
-namespace Northwind.EntityModels;
+namespace Northwind.DataContext.MySql;
 
 public partial class NorthwindContext : DbContext
 {
