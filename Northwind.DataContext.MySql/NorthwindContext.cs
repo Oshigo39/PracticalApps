@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Northwind.EntityModels;
+using Northwind.EntityModels.Mysql;
 
 namespace Northwind.DataContext.MySql;
 
@@ -41,8 +42,14 @@ public partial class NorthwindContext : DbContext
     public virtual DbSet<Territory> Territories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySQL("server=localhost;database=northwind;user=root;password=root_oshigo;");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            string connectionString = "server=localhost;database=northwind;user=root;password=root_oshigo;";
+            optionsBuilder.UseMySQL(connectionString);
+        }
+        
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -65,6 +72,7 @@ public partial class NorthwindContext : DbContext
         modelBuilder.Entity<Order>(entity =>
         {
             entity.Property(e => e.CustomerId).IsFixedLength();
+            entity.Property(e => e.Freight).HasDefaultValueSql("0");
         });
 
         modelBuilder.Entity<Region>(entity =>
@@ -75,6 +83,22 @@ public partial class NorthwindContext : DbContext
         modelBuilder.Entity<Territory>(entity =>
         {
             entity.Property(e => e.TerritoryDescription).IsFixedLength();
+        });
+
+        // 配置sql语句的默认值
+        modelBuilder.Entity<Orderdetail>(entity =>
+        {
+            entity.Property(e => e.Quantity).HasDefaultValueSql("1");
+            entity.Property(e => e.UnitPrice).HasDefaultValueSql("0");
+        });
+        
+        modelBuilder.Entity<Product>(entity =>
+        {
+            entity.Property(e => e.Discontinued).HasDefaultValueSql("0");
+            entity.Property(e => e.Price).HasDefaultValueSql("0");
+            entity.Property(e => e.ReorderLevel).HasDefaultValueSql("0");
+            entity.Property(e => e.UnitsInStock).HasDefaultValueSql("0");
+            entity.Property(e => e.UnitsOnOrder).HasDefaultValueSql("0");
         });
 
         OnModelCreatingPartial(modelBuilder);
