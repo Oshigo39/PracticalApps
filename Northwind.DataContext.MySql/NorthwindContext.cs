@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Northwind.EntityModels;
 using Northwind.EntityModels.Mysql;
 
@@ -45,7 +46,9 @@ public partial class NorthwindContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            string connectionString = "server=localhost;database=northwind;user=root;password=root_oshigo;";
+            // 使用Microsoft.Extensions.Configuration中的IConfiguration接口读取配置文件
+            IConfiguration configuration = null!;
+            string connectionString = configuration.GetConnectionString("Northwind")!;
             optionsBuilder.UseMySQL(connectionString);
         }
         
