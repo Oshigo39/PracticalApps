@@ -1,5 +1,11 @@
+#region 配置Web服务器主机和服务
+
 var builder = WebApplication.CreateBuilder(args);
+// web主机builder添加RazorPage服务
+builder.Services.AddRazorPages();
 var app = builder.Build();
+
+#endregion
 
 #region 配置 HTTP 管道和路由
 // 如果当前环境不是开发环境，则强制使用https
@@ -16,6 +22,8 @@ app.UseDefaultFiles();
 // 为当前请求路径启用静态文件服务
 app.UseStaticFiles();
 
+// 配置RazorPages路由，RazorPages终结点注册到应用程序的请求处理管道中，使RazorPages能够响应 HTTP 请求
+app.MapRazorPages();
 // 为所有的get请求都指向Hello World
 app.MapGet("/hello", () => $"Environment is: {app.Environment.EnvironmentName}");
 
