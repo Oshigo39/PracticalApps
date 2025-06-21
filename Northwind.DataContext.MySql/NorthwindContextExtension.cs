@@ -14,7 +14,8 @@ public class NorthwindContextExtension
         IServiceCollection services, 
         IConfiguration configuration)
     {
-        string connectionString = configuration.GetConnectionString("Northwind")!;
+        // string connectionString = configuration.GetConnectionString("Northwind")!;
+        string connectionString = "server=localhost;database=northwind;user=root;password=root_oshigo;";
         
         // 安全记录日志（隐藏密码）
         var csb = new MySqlConnectionStringBuilder(connectionString);

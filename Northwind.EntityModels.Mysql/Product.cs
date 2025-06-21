@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Northwind.EntityModels.Mysql;
 
-[Keyless]
+// byd这个特性导致测试一直不通过（提示entity无主键）
+// [Keyless]
 [Table("products")]
 public partial class Product
 {
+    [Key]
     [Column("ProductID")]
     public int? ProductId { get; set; }
 
