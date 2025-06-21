@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.DataContext.MySql
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.UnitTests", "Northwind.UnitTests\Northwind.UnitTests.csproj", "{4E1F3B49-2A8C-4AEE-BD69-55E71C04372F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.Web", "Northwind.Web\Northwind.Web.csproj", "{F9828702-CD3A-44AF-BD0D-06C9DD6C674E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{4E1F3B49-2A8C-4AEE-BD69-55E71C04372F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1F3B49-2A8C-4AEE-BD69-55E71C04372F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1F3B49-2A8C-4AEE-BD69-55E71C04372F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9828702-CD3A-44AF-BD0D-06C9DD6C674E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9828702-CD3A-44AF-BD0D-06C9DD6C674E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9828702-CD3A-44AF-BD0D-06C9DD6C674E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9828702-CD3A-44AF-BD0D-06C9DD6C674E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
