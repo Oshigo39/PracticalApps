@@ -1,8 +1,19 @@
+#region 导入必要的名称空间
+
+using Northwind.EntityModels.Mysql;
+using Northwind.DataContext.MySql;
+
+#endregion
+
 #region 配置Web服务器主机和服务
 
 var builder = WebApplication.CreateBuilder(args);
 // web主机builder添加RazorPage服务
 builder.Services.AddRazorPages();
+// 注册Northwind数据库上下文到依赖容器当中
+NorthwindContextExtension
+    .AddNorthwindContext(builder.Services,builder.Configuration);
+
 var app = builder.Build();
 
 #endregion
