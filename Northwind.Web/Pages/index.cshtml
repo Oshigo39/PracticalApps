@@ -7,40 +7,21 @@
 
     public void OnGet()
     {
+        // 设置Title的值
+        ViewData["Title"] = "Northwind B2B";
         DayName = DateTime.Now.ToString("dddd");
     }
 }
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- 必要的元标记 -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" 
-          rel="stylesheet" 
-          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" 
-          crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" 
-            crossorigin="anonymous"></script>
-    <title>Welcome ASP.NET Core!</title>
-</head>
-<body>
-<div class="container">
-    <div class="jumbotron">
-        <h1 class="display-3">Welcome to Northwind B2B</h1>
-        <p class="lead">We supply products to our customers.</p>
-        <hr />
-        <p>Our customers include restaurants, hotels, and cruise lines.</p>
-        <p>
-            <a class="btn btn-primary"
-               href="https://www.asp.net/">Learn more</a>
-        </p>
-        <p>今日是 @DayName! 我们的客户包括餐厅、酒店和游轮公司。</p>
-    </div>
+<div class="jumbotron">
+    <h1 class="display-3">Welcome to @ViewData["Title"]</h1>
+    <p class="lead">We supply products to our customers.</p>
+    <hr/>
+    <p>It's @DayName Our customers include restaurant,hotels,and cruise lines.</p>
+    <p>
+        <a class="btn btn-primary" href="suppliers">
+            Learn more about our suppliers.
+        </a>
+    </p>
 </div>
-</body>
-</html>
 
 
