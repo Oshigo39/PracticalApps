@@ -25,6 +25,31 @@ if (!app.Environment.IsDevelopment())
     // 添加使用 HSTS 的中间件，该中间件会添加 Strict-Transport-Security 标头
     app.UseHsts();
 }
+
+// 作为中间件实现匿名内联委托
+// 来拦截 HTTP 请求和响应
+app.Use(async (context, next) =>
+{
+    if (context.GetEndpoint() is RouteEndpoint rep)
+    {
+        Console.WriteLine($"Endpoint name: {rep.DisplayName}");
+        Console.WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
+    }
+
+    if (context.Request.Path == "/bonjour")
+    {
+        // 在 URL 路径匹配的情况下，这将成为终止符
+        // 返回的委托不会调用下一个委托。
+        await context.Response.WriteAsync("Bonjour Monde!");
+        return;
+    }
+
+    // 我们可以在调用下一个委托之前修改请求。
+    await next();
+
+    // 我们可以在调用下一个委托后修改响应。
+});
+
 // 添加将 HTTP 请求重定向到 HTTPS 的中间件。
 app.UseHttpsRedirection();
 
