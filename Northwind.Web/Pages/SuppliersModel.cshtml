@@ -1,6 +1,7 @@
-﻿@page
+﻿@page "/suppliers"
 @model Northwind.Web.Pages.SuppliersModel
 @using Northwind.EntityModels.Mysql
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="row">
     <h1 class="display-2">Suppliers</h1>
@@ -27,4 +28,25 @@
         </tbody>
     </table>
     
+</div>
+
+<div class="row">
+    <p>Enter details for a new suppliers: </p>
+    @* POST类型的form表单，自动触发后台代码中的OnPost方法 *@
+    <form method="POST">
+        @* asp-for将<input>、<select>等直接绑定到模型中的属性 *@
+        <div>
+            <input asp-for="Supplier!.CompanyName"
+                   placeholder="Company Name"/></div>
+        <br/>
+        <div>
+            <input asp-for="Supplier!.Country"
+                   placeholder="Country"/></div>
+        <br/>
+        <div>
+            <input asp-for="Supplier!.Phone"
+                   placeholder="Phone"/></div>
+        <br/>
+        <input type="submit"/>
+    </form>
 </div>
