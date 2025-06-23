@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Northwind.EntityModels.Mysql;
 
-[Keyless]
 [Table("customers")]
 public partial class Customer
 {
+    [Key]
     [Column("CustomerID")]
     [StringLength(5)]
     public string? CustomerId { get; set; }
