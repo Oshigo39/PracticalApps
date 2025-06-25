@@ -3,7 +3,7 @@
 using Microsoft.Extensions.Caching.Memory;          // 用于使用内存中缓存的名称空间
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Northwind.DataContext.MySql;
-using Northwind.EntityModels.Mysql;
+using Northwind.WebApi.Repositories;                // 导入使用用户存储库的名称空间
 
 #endregion
 
@@ -44,6 +44,11 @@ builder.Services.AddControllers(option =>
 // 3. 内存缓存服务
 builder.Services.AddSingleton<IMemoryCache>(
     new MemoryCache(new MemoryCacheOptions()));
+
+// 注册CRUD存储库的"作用域生命周期服务"，实现接口-实现绑定，任何依赖该接口的组件都会获得对应实现的实例
+// 同一个 HTTP 请求范围内共享同一个实例、不同请求会创建新实例、请求结束时自动释放
+builder.Services.AddScoped<ICustomerRepositories,CustomerRepositories>();
+
 // 自动生成机器可读的 OpenAPI 文档的服务
 builder.Services.AddOpenApi();
 
