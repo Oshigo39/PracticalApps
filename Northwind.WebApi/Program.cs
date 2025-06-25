@@ -1,5 +1,7 @@
 #region using
 
+using Google.Protobuf.WellKnownTypes;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Caching.Memory;          // 用于使用内存中缓存的名称空间
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Northwind.DataContext.MySql;
@@ -57,6 +59,14 @@ builder.Services.AddSwaggerGen();
 // 自动生成机器可读的 OpenAPI 文档的服务
 builder.Services.AddOpenApi();
 
+// 添加日志服务，并配置日志记录
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = HttpLoggingFields.All;
+    options.RequestBodyLogLimit = 4096;
+    options.ResponseBodyLogLimit = 4092;
+});
+
 var app = builder.Build();
 
 #endregion
@@ -78,6 +88,8 @@ if (app.Environment.IsDevelopment())
         });
     });
 }
+
+app.UseHttpLogging();
 
 app.UseHttpsRedirection();
 
