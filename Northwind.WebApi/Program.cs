@@ -3,7 +3,8 @@
 using Microsoft.Extensions.Caching.Memory;          // 用于使用内存中缓存的名称空间
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Northwind.DataContext.MySql;
-using Northwind.WebApi.Repositories;                // 导入使用用户存储库的名称空间
+using Northwind.WebApi.Repositories;
+using Swashbuckle.AspNetCore.SwaggerUI; // 导入使用用户存储库的名称空间
 
 #endregion
 
@@ -49,6 +50,10 @@ builder.Services.AddSingleton<IMemoryCache>(
 // 同一个 HTTP 请求范围内共享同一个实例、不同请求会创建新实例、请求结束时自动释放
 builder.Services.AddScoped<ICustomerRepositories,CustomerRepositories>();
 
+// 添加swagger服务
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 // 自动生成机器可读的 OpenAPI 文档的服务
 builder.Services.AddOpenApi();
 
@@ -60,6 +65,18 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    // 配置Swagger的Http请求管道，指定其url范围
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Northwind Service API Version 1");
+
+        c.SupportedSubmitMethods(new[]
+        {
+            SubmitMethod.Get, SubmitMethod.Post,
+            SubmitMethod.Put, SubmitMethod.Delete
+        });
+    });
 }
 
 app.UseHttpsRedirection();
