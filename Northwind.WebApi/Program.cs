@@ -1,5 +1,6 @@
 #region using
 
+using System.Net.Http.Headers;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Caching.Memory;          // 用于使用内存中缓存的名称空间
@@ -66,6 +67,17 @@ builder.Services.AddHttpLogging(options =>
     options.RequestBodyLogLimit = 4096;
     options.ResponseBodyLogLimit = 4092;
 });
+
+// 启用HttpClient，并请求JSON作为默认响应
+// 格式
+builder.Services.AddHttpClient(
+    name: "NorthwindAPI", configureClient: options =>
+    {
+        options.BaseAddress = new Uri("https://localhost:5151");
+        options.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue(
+                mediaType: "application/json", quality: 1.0));
+    });
 
 var app = builder.Build();
 
